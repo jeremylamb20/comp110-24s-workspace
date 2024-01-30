@@ -1,64 +1,36 @@
-"""EX01 - Simple Battleship!!"""
-	 
-__author__ = "730461078"
+#Pt 1: Player 1 input
+secret_boat_location = int(input("Pick a secret boat location between 1 and 4: "))
+if secret_boat_location < 1:
+    print(f"Error! {secret_boat_location} too low!")
+    exit()
+elif secret_boat_location > 4:
+    print(f"Error! {secret_boat_location} too high!")
+    exit()
 
-#Prompting for Player 1 Input
-while True:
-    player1_input = int(input("Pick a secret boat location between 1 and 4: "))
-    if player1_input < 1:
-        print("Error! {} too low!".format(player1_input))
-    elif player1_input > 4:
-        print("Error! {} too high!".format(player1_input))
-    else:
-        break
+#Pt 2: Player 2 input
+guess_number = int(input("Guess a number between 1 and 4: "))
+if guess_number < 1:
+    print(f"Error! {guess_number} too low!")
+    exit()
+elif guess_number > 4:
+    print(f"Error! {guess_number} too high!")
+    exit()
 
-#Prompting for Player 2 Input
-while True:
-    player2_input = int(input("Pick a secret boat location between 1 and 4: "))
-    if player2_input < 1:
-        print("Error! {} too low!".format(player2_input))
-    elif player2_input > 4:
-        print("Error! {} too high!".format(player2_input))
-    else:
-        break
-
-#Copied named constants from assignment page
-BLUE_BOX: str = "\U0001F7E6"
-RED_BOX: str = "\U0001F7E5"
-WHITE_BOX: str = "\U00002B1C"
-
-#Checking Player 1's guess
-player1_guess = int(input("Guess a number between 1 and 4: "))
-if player1_guess == player2_input:
-    print("Correct! You hit the ship")
+#Pt 3: Checking if user input matches
+if guess_number == secret_boat_location:
+    print("Correct! You hit the ship.")
 else:
     print("Incorrect! You missed the ship.")
 
-#Checking Player 1's guess and building the emoji string
-result = RED_BOX if player1_guess == player2_input else WHITE_BOX
-emoji_string2 = ""
-for Y in range(1, 5):
-    if Y == player1_guess:
-        emoji_string2 += result
+BLUE_BOX = "\U0001F7E6"
+RED_BOX = "\U0001F7E5"
+WHITE_BOX = "\U00002B1C"
+
+result = RED_BOX if guess_number == secret_boat_location else WHITE_BOX
+emoji_string = ""
+for i in range(1, 5):
+    if i == guess_number:
+        emoji_string += result
     else:
-        emoji_string2 += BLUE_BOX
-
-print(emoji_string2)
-
-#Checking Player 2's guess
-player2_guess = int(input("Guess a number between 1 and 4: "))
-if player2_guess == player1_input:
-    print("Correct! You hit the ship")
-else:
-    print("Incorrect! You missed the ship.")
-
-#Checking Player 2's guess and building the emoji string
-result = RED_BOX if player2_guess == player1_input else WHITE_BOX
-emoji_string1 = ""
-for X in range(1, 5):
-    if X == player2_guess:
-        emoji_string1 += result
-    else:
-        emoji_string1 += BLUE_BOX
-
-print(emoji_string1)
+        emoji_string += BLUE_BOX
+print(emoji_string)
